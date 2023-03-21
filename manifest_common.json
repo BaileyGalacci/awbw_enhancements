@@ -1,7 +1,7 @@
 {
     "name": "AWBW Enhancements",
     "description": "Replay keyboard shortcuts and moveplanner enhancements for Advance Wars By Web.",
-    "version": "2022.1.16.0",
+    "version": "2023.2.11.0",
     "icons": {
         "16": "/res/images/fighter_icon16.png",
         "32": "/res/images/fighter_icon32.png",
@@ -19,8 +19,24 @@
                 "options/options_definitions.js",
                 "lib/options_reader.js",
                 "content_scripts/toggle_calculator_shortcut_script.js",
+                "content_scripts/rate_limit_workaround_script.js",
                 "content_scripts/replay_shortcuts_script.js",
                 "content_scripts/speedy_event_panel_script.js"
+            ]
+        }, {
+            "matches": ["https://awbw.amarriner.com/damage.php"],
+            "css": ["res/awbw_enhancements.css"],
+            "js": [
+                "options/options_definitions.js",
+                "lib/options_reader.js",
+                "content_scripts/enhanced_damage_chart_script.js"
+            ]
+        }, {
+            "matches": ["https://awbw.amarriner.com/gameswait.php*"],
+            "js": [
+                "options/options_definitions.js",
+                "lib/options_reader.js",
+                "content_scripts/gameswait_redirect_script.js"
             ]
         }, {
             "matches": ["https://awbw.amarriner.com/moveplanner.php*"],
@@ -34,6 +50,7 @@
                 "lib/profile_settings_reader.js",
                 "lib/game_state_parser.js",
                 "lib/build_menu_listener.js",
+                "lib/co_select_panel.js",
                 "lib/cursor_tracker.js",
                 "lib/move_range_preview.js",
                 "lib/player_panel.js",
