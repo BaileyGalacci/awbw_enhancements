@@ -1,5 +1,16 @@
 let kCheckOptionsMapping = [
     {
+        id: "enable-rate-limit-workaround",
+        name: "options_enable_rate_limit_workaround",
+        default: true,
+        label: "Enable Rate Limit Workaround",
+        description: [
+            `Enables a workaround for the rate limiting that breaks replays if you advance through ` +
+            `them too quickly.`,
+            `The workaround code pre-emptively throttles certain unimportant requests and adds delayed retrying ` +
+            `for important requests that load the next turn's replay data.`
+        ],
+    }, {
         id: "enable-speedy-event-panel",
         name: "options_enable_speedy_event_panel",
         default: false,
@@ -28,6 +39,23 @@ let kCheckOptionsMapping = [
         description: [
             "Use the keyboard to navigate forward and backward in replays rather than having " +
             "to click the buttons."
+        ],
+    }, {
+        id: "enable-gameswait-redirect",
+        name: "options_enable_gameswait_redirect",
+        default: true,
+        label: "Enable Automatic Game Lobby Redirect",
+        description: [
+            `Automatically redirect from expired links to the "gameswait.php" page to the ` +
+            `corresponding "2030.php" page.`
+        ],
+    }, {
+        id: "enable-enhanced-damage-chart",
+        name: "options_enable_enhanced_damage_chart",
+        default: true,
+        label: "Enable Enhanced Damage Chart",
+        description: [
+            `Adds color coding, production sort order, and firepower and defense modifiers to the damage chart.`
         ],
     }, {
         id: "enable-moveplanner-plus",
@@ -102,6 +130,15 @@ let kCheckOptionsMapping = [
             `Fixes extra "capture" icons being displayed for infantry that already finished capturing.`
         ],
     }, {
+        id: "enable-bugfix-restore-clobbers-removed-unit-icons",
+        name: "options_enable_bugfix_restore_clobbers_removed_unit_icons",
+        default: true,
+        label: 'Fix Removed Unit Icons Disappearing After Savestate Restore',
+        description: [
+            `Fixes the bug where units in the "Removed Units" panel will have their icons cleared when a ` +
+            `savestate is restored. (This happens because they are wiped as part of clearing the old board state.)`
+        ],
+    }, {
         id: "enable-bugfix-encoded-sprite-urls",
         name: "options_enable_bugfix_encoded_sprite_urls",
         default: true,
@@ -160,16 +197,17 @@ let kRangeOptionsMapping = [
             `ongoing game.`
         ],
     }, {
-        id: "menu-opacity-range",
-        previewId: "menu-opacity-preview",
-        name: "options_menu_opacity",
-        default: 0.75,
+        id: "menu-background-alpha-range",
+        previewId: "menu-background-alpha-preview",
+        name: "options_menu_background_alpha",
+        default: 0.6,
         min: 0.15,
         max: 1,
         step: 0.05,
-        label: "Menu Opacity",
+        label: "Menu Alpha",
         description: [
-            `Makes the "Action Menu" and "Build Menu" partially transparent so that you can see behind them.`
+            `Makes the background of the "Action Menu" and "Build Menu" partially transparent so that ` +
+            `you can see behind them.`
         ],
     }
 ];

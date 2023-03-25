@@ -84,7 +84,7 @@ async function getInitialPlayerState(options, mapEntities) {
             }
 
             // If income is set and non-zero, try to infer the funding level
-            if (playerInfo.players_income && !fundsPerProperty) {
+            if (playerInfo.players_income && playerInfo.cities != "?" && !fundsPerProperty) {
                 let properties = propertiesByCountry[playerInfo.countries_code];
                 let incomeProperties = properties.filter((p) => p.producesIncome()).length;
                 fundsPerProperty = playerInfo.players_income / incomeProperties;
@@ -180,8 +180,11 @@ function injectRequestedStyles(options) {
 
     let s = document.createElement("style");
     s.appendChild(document.createTextNode(`
-    #options-menu, #build-menu {
-      opacity: ${options.options_menu_opacity};
+    #options-menu ul, #build-menu ul {
+      background-color: rgb(221, 221, 221, ${options.options_menu_background_alpha});
+    }
+    #options-menu ul li:hover, #build-menu ul li:hover {
+      background-color: rgb(190, 190, 190, ${options.options_menu_background_alpha});
     }`));
     (document.head || document.documentElement).appendChild(s);
 }
@@ -292,6 +295,20 @@ OptionsReader.instance().onOptionsReady((options) => {
             }
         });
         observer.observe(gamemap, {subtree: true, childList: true, attributes: true});
+
+        if (options.options_enable_bugfix_restore_clobbers_removed_unit_icons) {
+            let removedUnitsPanel = document.getElementById("planner_removed_units");
+            if (removedUnitsPanel) {
+                (new MutationObserver(() => {
+                    let childSpans = removedUnitsPanel.getElementsByTagName("span");
+                    for (let child of childSpans) {
+                        if (child.id.startsWith("unit_")) {
+                            child.removeAttribute("id");
+                        }
+                    }
+                })).observe(removedUnitsPanel, {subtree: true, childList: true});
+            }
+        }
 
         // Grab initial state to initialize stuff
         parser.handleMapUpdate();

@@ -156,6 +156,16 @@
     margin-right: 4px;
 }
 
+.awbwenhancements-numeric-input {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000000;
+    background-color: #0066CC;
+    color: #FFFFE0;
+    font-size: 14px;
+    font-family: Arial,Verdana,Helvetica,Geneva,sans-serif;
+}
+
 .awbwenhancements-btn-container {
   display: flex;
   height: 100%;
@@ -208,6 +218,21 @@
 .awbwenhancements-player-bar {
 }
 
+.awbwenhancements-co-menu-container {
+    position: relative;
+    display: block;
+    width: 144px;
+    /* need to be above the removed units panel */
+    z-index: 105;
+}
+.awbwenhancements-co-menu {
+    position: absolute;
+    display: block;
+    width: 144px;
+    /* need to be above the removed units panel */
+    z-index: 105;
+}
+
 .awbwenhancements-player-funds-container {
     cursor: pointer;
 }
@@ -228,4 +253,10 @@
     border-style: solid;
     border-width: 1px;
     pointer-events: none;
+}
+
+td.awbwenhancements-two-hit-ko {
+    border-style: solid !important;
+    border-width: 2px !important;
+    border-color: blue !important;
 }
