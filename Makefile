@@ -19,9 +19,9 @@ $(OUTPUT): $(SRCS)
 chrome:
 	chmod +w manifest.json || true
 	./merge_json.py manifest_common.json manifest_chrome.json > manifest.json
-	chmod -w manifest.json
+	chmod a-w manifest.json
 
 ff:
 	chmod +w manifest.json || true
 	./merge_json.py manifest_common.json manifest_ff.json > manifest.json
-	chmod -w manifest.json
+	chmod a-w manifest.json
